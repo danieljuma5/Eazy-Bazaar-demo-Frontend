@@ -9,16 +9,16 @@ const Products = ({ addToCart }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
-      const response = await fetch('http://localhost:9292/products');
+      const response = await fetch('https://fakestoreapi.com/products');
       const data = await response.json();
       setProducts(data);
       setFilteredProducts(data);
       setLoading(false);
     };
-
+  
     fetchProducts();
   }, []);
-
+  
   const Loading = () => {
     return <div>Loading...</div>;
   };

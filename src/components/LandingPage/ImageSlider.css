@@ -1,0 +1,27 @@
+/* ImageSlider.css */
+
+.slider {
+    display: flex;
+    overflow: hidden;
+    padding: 5px;
+  }
+  
+  .slide-track {
+    display: flex;
+    animation: slide 60s linear infinite;
+  }
+  
+  @keyframes slide {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-250px * 14));
+    }
+  }
+  
+  /* Ensure each slide takes the same width */
+  .slide {
+    flex: 0 0 250px;
+  }
+  

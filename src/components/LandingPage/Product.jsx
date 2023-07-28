@@ -10,15 +10,23 @@ const Product = ({ addToCart }) => {
   useEffect(() => {
     const getProduct = async () => {
       setLoading(true);
-      const response = await fetch(`http://localhost:9292/products/${id}`);
-      const data = await response.json();
-      setProduct(data);
-      setLoading(false);
+      try {
+        const response = await fetch(`https://fakestoreapi.com/products`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setProduct(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
+      }
     };
-
+  
     getProduct();
-  }, [id]);
-
+  }, []);
+  
   const Loading = () => {
     return <div>Loading...</div>;
   };
