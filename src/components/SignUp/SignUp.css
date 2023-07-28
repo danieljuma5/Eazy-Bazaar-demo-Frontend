@@ -1,5 +1,6 @@
 .Layout{
     display: flex;
+    color: #555;
     flex-direction: row;
     height: 70vh;
 }
@@ -15,6 +16,7 @@
 
 .container{
     flex: none;
+    color: #555;
     flex-grow: 0;
     height: 100%;
     width: 50%;
