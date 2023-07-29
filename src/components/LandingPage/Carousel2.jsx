@@ -16,7 +16,7 @@ const MyCarousel = () => {
                   <a href="#">BUY NOW</a>
                 </div>
                 <div className="col-md-5 col-12 order-md-2 order-1">
-                  <video src="https://www.apple.com/105/media/ww/iphone-14-pro/2023/b094f6e4-dcdb-494f-bd72-45d659126dcd/anim/hero/large.mp4" class="mx-auto" alt="slide" autoplay loop controls></video>
+                  <video src="https://www.apple.com/105/media/ww/iphone-14-pro/2023/b094f6e4-dcdb-494f-bd72-45d659126dcd/anim/hero/large.mp4" class="mx-auto" alt="slide" autoPlay loop muted controls/>
                 </div>
               </div>
             </div>

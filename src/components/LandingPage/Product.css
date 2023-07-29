@@ -1,0 +1,67 @@
+/* Product Card */
+.product-card {
+    display: flex;
+    grid-auto-rows: 40rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Add a shadow to the card */
+    transition: box-shadow 0.3s ease; /* Add transition for smooth effect */
+  }
+  
+  .product-card:hover {
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+  }
+  
+  /* Product Image */
+  .product-image {
+    object-fit: cover;
+    width: 280px; /* Adjust the width as needed */
+    height: 350px; /* Adjust the height as needed */
+    border-radius: 2.5%;
+  
+  }
+  
+  /* Product Title */
+  .product-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
+  /* Product Price */
+  .product-price {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+  
+  /* Product Buttons */
+  .product-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  .product-buttons .btn {
+    box-shadow: none;
+    width: 100%;
+    height: 40px;
+    background-color: #3d3d3d;
+    color: #fff;
+    border-radius: 25px;
+    box-shadow: 3px 3px 3px #b1b1b1, -3px -3px 3px #fff;
+    letter-spacing: 1.3px;
+    white-space: nowrap;
+    padding: 0.55rem 1.0rem; /* To match the padding for Go to Cart button */
+  }
+  
+  .product-buttons .btn:hover {
+    background-color: #000000;
+  }
+  

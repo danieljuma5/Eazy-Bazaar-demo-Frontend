@@ -5,8 +5,8 @@ import Products from "./Products";
 const Home = () => {
     return (
         <div>
-            <Carousel/>
             <Carousel2/>
+            <Carousel/>
             <Products />
         </div>
     );

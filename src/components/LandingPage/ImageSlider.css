@@ -4,11 +4,13 @@
     display: flex;
     overflow: hidden;
     padding: 0px;
+    background-color: black;
   }
   
   .slide-track {
     display: flex;
     animation: slide 60s linear infinite;
+    background-color: black;
   }
   
   @keyframes slide {
