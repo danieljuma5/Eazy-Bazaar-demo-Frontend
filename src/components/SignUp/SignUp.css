@@ -1,110 +1,88 @@
-/* Importing fonts from Google */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
-
-/* Reseting */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-body {
-    background: #ecf0f3;
-}
-
-.wrapper {
-    max-width: 500px;
-    min-height: 500px;
-    margin: 80px auto;
-    padding: 40px 30px 30px 30px;
-    background-color: #ecf0f3;
-    border-radius: 15px;
-    box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
-}
-
-.logo {
-    width: 80px;
-    margin: auto;
-}
-
-.logo img {
-    width: 100%;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 50%;
-    box-shadow: 0px 0px 3px #5f5f5f,
-        0px 0px 0px 5px #ecf0f3,
-        8px 8px 15px #a7aaa7,
-        -8px -8px 15px #fff;
-}
-
-.wrapper .name {
-    font-weight: 600;
-    font-size: 1.4rem;
-    letter-spacing: 1.3px;
-    padding-left: 10px;
+.Layout{
+    display: flex;
     color: #555;
+    flex-direction: row;
+    height: 70vh;
 }
 
-.wrapper .form-field input {
-    width: 100%;
-    display: block;
-    border: none;
-    outline: none;
-    background: none;
-    font-size: 1.2rem;
-    color: #666;
-    padding: 10px 15px 10px 10px;
+.s-image{
+    flex: none;
+    flex-grow: 0;
+    height: 120%;
+    width: 50%;
+    /* border: 2px solid red; */
+    /* object-fit: cover; */
+}
+
+.container{
+    flex: none;
+    color: #555;
+    flex-grow: 0;
+    height: 100%;
+    width: 50%;
+    /* border: 2px solid black; */
+}
+
+#shopName{
+    text-align: center;
+    margin-top: 20%;
+  }
+  
+  
+#createAccount{
+    text-align: center;
+    font-size: xx-large;
+}
+
+#connect{
+    text-align: center;
+}
+
+#signUpBox{
     /* border: 1px solid red; */
+    
+    margin-left: 30%;
+    margin-right: 30%;
+    font-weight: 400;
 }
 
-.wrapper .form-field {
-    padding-left: 10px;
-    margin-bottom: 20px;
-    border-radius: 20px;
-    box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
-}
-
-.wrapper .form-field .fas {
-    color: #555;
-}
-
-.wrapper .btn {
-    box-shadow: none;
+.inputs{
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
     width: 100%;
-    height: 40px;
-    background-color: #2b2b2b;
-    color: #fff;
-    border-radius: 25px;
-    box-shadow: 3px 3px 3px #b1b1b1,
-        -3px -3px 3px #fff;
-    letter-spacing: 1.3px;
+    height: 48px;
 }
 
-.wrapper .btn:hover {
-    background-color: #737373;
+#s-btn{
+    margin-top: 15px;
+    margin-bottom: 13px;
+    width: 100%;
+    height: 48px;
+    color: rgba(255, 255, 255, 0.9);;
+    background: #333;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.wrapper a {
-    text-decoration: none;
-    font-size: 0.8rem;
-    color: #4e4e4e;
+#s-btn:hover {
+    background-color: #555;
+    
 }
 
-.wrapper a:hover {
-    color: #000000;
-}
-
-@media(max-width: 380px) {
-    .wrapper {
-        margin: 30px 20px;
-        padding: 40px 15px 15px 15px;
-    }
-}
-#l-account{
-   display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
-    margin-left: -12px;
+#s-account{
+    position: absolute;
+    margin-left: 15%;
+    margin-top: 0px;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  
+#LogIn{
+    color: #3356D1;
+    text-decoration-line: underline;
 }
