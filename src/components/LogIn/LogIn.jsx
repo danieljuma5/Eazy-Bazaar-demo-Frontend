@@ -1,52 +1,63 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import './LogIn.css';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 function LogIn() {
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
-    userName: '',
+    email: '',
     password: '',
-  });
+  })
 
   const handleChange = (e) => {
-    setLoginData({ ...loginData, [e.target.name]: e.target.value });
+    setLoginData({...loginData, [e.target.name]: e.target.value})
   };
+
+  console.log(loginData);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate('/');
+    navigate('/')
   };
 
   return (
-    <div className="wrapper">
-      <div className="logo">
-        <img src="" alt="" />
-      </div>
-      <div className="text-center mt-4 name">
-        This shop
-      </div>
-      <form className="p-3 mt-3" onChange={handleChange} onSubmit={handleSubmit}>
-        <div className="form-field d-flex align-items-center">
-          <span className="far fa-user"></span>
-          <input type="text" name="userName" id="userName" placeholder="Username" />
-        </div>
-        <div className="form-field d-flex align-items-center">
-          <span className="fas fa-key"></span>
-          <input type="password" name="password" id="pwd" placeholder="Password" />
-        </div>
-        <button className="btn mt-3">Login</button>
-      </form>
-
-      {/* Remaining code from the lower part of your component */}
+    <div className="Layout">
       <div className="container">
-        
-
+        <h1 id='wetto'>WETTO SHOP</h1>
+        <h1 id="welcome">Hi, Welcome Back! 👋</h1>
+        <form id="loginBox" onChange={handleChange} onSubmit={handleSubmit}>
+          <label htmlFor="email" id="e-label">
+            Email
+          </label><br/>
+          <input
+            type="email"
+            name="email"
+            placeholder="example@gmail.com"
+            id="input"
+            required
+          /><br />
+          <label htmlFor="password" id="p-label">
+            Password
+          </label><br />
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter Your Password"
+            id="input"
+            required
+          /><br />
+          <button
+           id='l-btn'
+           type='submit'
+           >
+            Login
+          </button>
+        </form>
         <p id='l-account'>
-          Don't have an account? <NavLink to="/signup">Sign Up</NavLink>
+          Don't have an account? <NavLink to = "/signup">Sign Up</NavLink>
         </p>
       </div>
-
+      <img className='l-image' src="/images/cart.jpg" alt="cart"/>
     </div>
   );
 }

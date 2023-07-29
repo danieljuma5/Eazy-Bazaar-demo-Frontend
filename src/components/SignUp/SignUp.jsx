@@ -1,57 +1,74 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import './SignUp.css';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-function SignUp() {
-  const navigate = useNavigate();
-  const [loginData, setLoginData] = useState({
+function SignUp(){
+
+    const navigate = useNavigate();
+    const [loginData, setLoginData] = useState({
     name: '',
     email: '',
     contact: '',
     password: '',
-  });
+  })
 
   const handleChange = (e) => {
-    setLoginData({ ...loginData, [e.target.name]: e.target.value });
+    setLoginData({...loginData, [e.target.name]: e.target.value})
   };
+
+  console.log(loginData);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate('/');
+    navigate('/')
   };
 
-  return (
-    <div className="wrapper">
-      <div className="logo">
-        <img src="" alt="" />
-      </div>
-      <div className="text-center mt-4 name">
-        This shop
-      </div>
-      <form className="p-3 mt-3" onChange={handleChange} onSubmit={handleSubmit}>
-        <div className="form-field d-flex align-items-center">
-          <span className="far fa-user"></span>
-          <input type="text" name="name" id="name" placeholder="Username" required />
+    return (
+        <div className='Layout'>
+            <div className="container">
+                <h1 id="shopName">WETTO SHOP</h1>
+                <h1 id="createAccount">Create an account</h1>
+                <h3 id="connect">Connect with your friends today!</h3>
+                <form id="signUpBox" onChange={handleChange} onSubmit={handleSubmit}>
+                    <input
+                     type= "text"
+                     name= "name"
+                     placeholder= "Enter Your Username"
+                     className='inputs'
+                     required
+                     /><br/>
+                     <input
+                     type= "email"
+                     name= "email"
+                     placeholder= "Enter Your Email"
+                     className='inputs'
+                     required
+                     /><br/>
+                     <input
+                     type= "tel"
+                     name= "contact"
+                     placeholder= "Enter Your Phone Number"
+                     className='inputs'
+                     required
+                     /><br/>
+                     <input
+                     type= "password"
+                     name= "password"
+                     placeholder= "Enter Your Password"
+                     className='inputs'
+                     required
+                     /><br/>
+                     <button id='s-btn'>
+                        Sign Up
+                     </button>
+                </form>
+                <p id='s-account'>
+                    Already have an account? < NavLink to = "/login">Login</NavLink>
+                </p>
+            </div>
+            <img className='s-image' src="/images/cart.jpg" alt="cart"/>
         </div>
-        <div className="form-field d-flex align-items-center">
-          <span className="fas fa-envelope"></span>
-          <input type="email" name="email" id="email" placeholder="Email" required />
-        </div>
-        <div className="form-field d-flex align-items-center">
-          <span className="fas fa-phone"></span>
-          <input type="tel" name="contact" id="contact" placeholder="Phone Number" required />
-        </div>
-        <div className="form-field d-flex align-items-center">
-          <span className="fas fa-key"></span>
-          <input type="password" name="password" id="pwd" placeholder="Password" required />
-        </div>
-        <button className="btn mt-3">Sign Up</button>
-      </form>
-      <div className="text-center fs-6">
-        Already have an account? <NavLink to="/login">Login</NavLink>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default SignUp;
