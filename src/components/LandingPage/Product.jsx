@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
-//import Cart from '../Cart/ShoppingCart';
+import './Product.css';
 
 const Product = ({ addToCart }) => {
   const { id } = useParams();
@@ -37,27 +37,29 @@ const Product = ({ addToCart }) => {
 
   const ShowProduct = () => {
     return (
-      <>
-        <div className="col-md-6">
-          <img src={product.image} alt={product.title} height="400px" width="400px" />
+      <div className="product-container">
+        <div className="product-image-wrapper">
+          <img src={product.image} alt={product.title} className="product-image" />
         </div>
-        <div className="col-md-6">
-          <h4 className="text-uppercase text-black-50">{product.category}</h4>
-          <h1 className="display-5">{product.title}</h1>
-          <p className="lead fw-bolder">
+        <div className="product-details">
+          <h4 className="product-category">{product.category}</h4>
+          <h1 className="product-title">{product.title}</h1>
+          <p className="product-rating">
             Rating: {product.rating && product.rating.rate}
             <i className="fa fa-star"></i>
           </p>
-          <h3 className="display-6 fw-bold my-4">$ {product.price}</h3>
-          <p className="lead">{product.description}</p>
-          <button className="btn btn-outline-dark" onClick={handleAddToCart}>
-            Add to Cart
-          </button>
-          <NavLink to="/cart" className="btn btn-dark ms-2 px-3 py-2">
-            Go to Cart
-          </NavLink>
+          <h3 className="product-price">$ {product.price}</h3>
+          <p className="product-description">{product.description}</p>
+          <div className="product-buttons">
+            <button className="btn btn-outline-dark" onClick={handleAddToCart}>
+              Add to Cart
+            </button>
+            <NavLink to="/cart" className="btn btn-dark ms-2">
+              Go to Cart
+            </NavLink>
+          </div>
         </div>
-      </>
+      </div>
     );
   };
 

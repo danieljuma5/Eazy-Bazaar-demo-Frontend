@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import './Products.css';
 
 const Products = ({ addToCart }) => {
   const [products, setProducts] = useState([]);
@@ -30,53 +31,54 @@ const Products = ({ addToCart }) => {
   
   const ShowProducts = () => {
     return (
-      <>
+      <div className="products-container">
         <div className="buttons d-flex justify-content-center mb-5 pb-5">
           <button className="btn btn-outline-dark me-2" onClick={() => setFilteredProducts(products)}>
             All
           </button>
           <button className="btn btn-outline-dark me-2" onClick={() => filterProducts("men's clothing")}>
-          Men's Clothing
+            Men's Clothing
           </button>
           <button className="btn btn-outline-dark me-2" onClick={() => filterProducts("women's clothing")}>
-          Women's Clothing
+            Women's Clothing
           </button>
           <button className="btn btn-outline-dark me-2" onClick={() => filterProducts('jewelry')}>
-          Jewelry
+            Jewelry
           </button>
           <button className="btn btn-outline-dark me-2" onClick={() => filterProducts('electronics')}>
-          Electronics
+            Electronics
           </button>
           <button className="btn btn-outline-dark me-2" onClick={() => filterProducts('alcoholic drinks')}>
-          Alcoholic Drinks
+            Alcoholic Drinks
           </button>
         </div>
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-          {filteredProducts.map((product) => (
-            <div className="col mb-4" key={product.id}>
-              <div className="card h-100 text-center p-4">
-                <img src={product.image} className="card-img-top" alt={product.title} />
-                <div className="card-body">
-                  <h5 className="card-title mb-0">{product.title.substring(0, 18)}</h5>
-                  <p className="card-text lead fw-bold">${product.price}</p>
-                  <p className="lead fw-bolder">
-                    Rating: {product.rating.rate}
-                    <i className="fas fa-star"></i>
-                  </p>
-                  <div className="d-flex justify-content-center align-items-center">
-                    <button className="btn btn-outline-dark" onClick={() => addToCart(product)}>
-                      Add to Cart
-                    </button>
-                    <NavLink to={`/products/${product.id}`} className="btn btn-outline-dark ms-2">
-                      Buy Now
-                    </NavLink>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
+  {filteredProducts.map((product) => (
+    <div className="col mb-4" key={product.id}>
+      <div className="product-card h-100 text-center p-4">
+        <img src={product.image} className="product-image" alt={product.title} />
+        <div className="product-details">
+          <h5 className="product-title">{product.title.substring(0, 18)}</h5>
+          <p className="product-price lead fw-bold">${product.price}</p>
+          <p className="product-rating lead fw-bolder">
+            Rating: {product.rating.rate}
+            <i className="fa fa-star"></i>
+          </p>
+          <div className="product-buttons">
+            <button className="btn btn-outline-dark" onClick={() => addToCart(product)}>
+              Add to Cart
+            </button>
+            <NavLink to={`/products/${product.id}`} className="btn btn-outline-dark ms-2">
+              Buy Now
+            </NavLink>
+          </div>
         </div>
-      </>
+      </div>
+    </div>
+  ))}
+</div>
+
+      </div>
     );
   };
 
