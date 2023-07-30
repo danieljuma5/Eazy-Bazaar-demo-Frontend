@@ -1,29 +1,46 @@
 /* Product Card */
 .product-card {
-    display: flex;
-    grid-auto-rows: 40rem;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem;
-    border-radius: 10px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Add a shadow to the card */
-    transition: box-shadow 0.3s ease; /* Add transition for smooth effect */
-  }
-  
-  .product-card:hover {
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
-  }
-  
-  /* Product Image */
-  .product-image {
-    object-fit: cover;
-    width: 280px; /* Adjust the width as needed */
-    height: 350px; /* Adjust the height as needed */
-    border-radius: 2.5%;
-  
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Add a shadow to the card */
+  transition: box-shadow 0.3s ease; /* Add transition for smooth effect */
+  overflow: hidden; /* Prevent images from overflowing */
+  width: 300px; /* Set the width of the card */
+  height: 350px; /* Set the height of the card */
+}
+
+.product-card:hover {
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+}
+
+/* Product Image */
+.product-image {
+  width: 100%; /* Take up the full width of the container */
+  height: 100%; /* Take up the full height of the container */
+  object-fit: contain; /* Ensure the entire image is visible */
+  border-radius: 10px; /* Match the card's border radius */
+  box-sizing: border-box; /* Ensure the border doesn't add to the image size */
+  border: 2px solid transparent; /* Add a transparent border to reserve space for border */
+}
+
+/* Optional: Add a wrapper around the image to apply border */
+.product-image-wrapper {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border: 2px solid transparent;
+  border-radius: 10px; /* Match the card's border radius */
+}
+
+/* Apply border on hover */
+.product-card:hover .product-image-wrapper {
+  border-color: #000; /* Add the desired border color */
+}
+
   /* Product Title */
   .product-title {
     font-size: 1.5rem;
