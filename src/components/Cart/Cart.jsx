@@ -1,4 +1,5 @@
 import React from 'react';
+import './Cart.css';
 
 const Cart = ({ cartItems, removeFromCart, setCartItems, clearCart }) => {
   const handleRemoveFromCart = (productId) => {
@@ -37,64 +38,70 @@ const Cart = ({ cartItems, removeFromCart, setCartItems, clearCart }) => {
   };
 
   return (
-    <div>
+    <div id="cart-wrapper">
       <div className="container py-5">
         <div className="row py-5">
           <div className="col-12">
-            <h1 className="display-6 fw-bolder text-center mb-4">Shopping Cart</h1>
-            <table className="table table-hover">
-              <thead>
-                <tr>
-                  <th scope="col">Product</th>
-                  <th scope="col">Price</th>
-                  <th scope="col">Quantity</th>
-                  <th scope="col">Total Quantity</th>
-                  <th scope="col">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {cartItems && cartItems.length === 0 ? (
+            <h1 className="display-6 fw-bolder text-center mb-4 name">Shopping Cart</h1>
+            <div id="cart-table-container">
+              <table id="cart-table" className="table table-hover">
+                <thead>
                   <tr>
-                    <td colSpan="5" className="text-center">
-                      No items in the cart
-                    </td>
+                    <th scope="col">Product</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total Quantity</th>
+                    <th scope="col">Actions</th>
                   </tr>
-                ) : (
-                  cartItems &&
-                  cartItems.map((item) => (
-                    <tr key={item.id}>
-                      <td>{item.title}</td>
-                      <td>${item.price}</td>
-                      <td>
-                        <button
-                          className="btn btn-outline-dark btn-sm me-2"
-                          onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
-                          disabled={item.quantity === 1}
-                        >
-                          -
-                        </button>
-                        {item.quantity}
-                        <button
-                          className="btn btn-outline-dark btn-sm ms-2"
-                          onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
-                        >
-                          +
-                        </button>
-                      </td>
-                      <td>${item.price * item.quantity}</td>
-                      <td>
-                        <button
-                          className="btn btn-outline-danger btn-sm"
-                          onClick={() => handleRemoveFromCart(item.id)}
-                        >
-                          Remove
-                        </button>
+                </thead>
+                <tbody>
+                  {cartItems && cartItems.length === 0 ? (
+                    <tr>
+                      <td colSpan="6" className="text-center">
+                        No items in the cart
                       </td>
                     </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
+                  ) : (
+                    cartItems &&
+                    cartItems.map((item) => (
+                      <tr key={item.id}>
+                        <td>{item.title}</td>
+                        <td>
+                          <img src={item.image} alt={item.title} style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '50%' }} />
+                        </td>
+                        <td>${item.price}</td>
+                        <td>
+                          <button
+                            className="btn btn-outline-dark btn-sm me-2"
+                            onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
+                            disabled={item.quantity === 1}
+                          >
+                            -
+                          </button>
+                          {item.quantity}
+                          <button
+                            className="btn btn-outline-dark btn-sm ms-2"
+                            onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
+                          >
+                            +
+                          </button>
+                        </td>
+                        <td>${item.price * item.quantity}</td>
+                        <td>
+                          <button
+                            className="btn btn-outline-danger btn-sm"
+                            onClick={() => handleRemoveFromCart(item.id)}
+                          >
+                            Remove
+                          </button>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
             {cartItems && cartItems.length > 0 && (
               <div className="text-center">
                 <button className="btn btn-outline-danger me-2" onClick={handleClearCart}>
