@@ -57,9 +57,6 @@ const Navbar = ({ onSearch }) => {
         </form>
       </div>
       <div className="actions-container">
-        <button className="account-button" onClick={toggleDropdown}>
-          Account
-        </button>
         {showDropdown && (
           <ul className="dropdown-menu">
             <li>
@@ -70,6 +67,13 @@ const Navbar = ({ onSearch }) => {
             </li>
           </ul>
         )}
+        <button className="account-button" onClick={toggleDropdown}>
+          Account
+        </button>
+        {/* Add the Rider link here */}
+        <li>
+          <Link to="/rider">Rider</Link>
+        </li>
         <Link to="/cart" className="cart-button">
           Cart
         </Link>

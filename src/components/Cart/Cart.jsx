@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Cart.css';
 
 const Cart = ({ cartItems, removeFromCart, setCartItems, clearCart }) => {
@@ -35,6 +36,13 @@ const Cart = ({ cartItems, removeFromCart, setCartItems, clearCart }) => {
   const getTotalAmount = () => {
     const totalAmount = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
     return totalAmount;
+  };
+
+  const handleDelivery = () => {
+    if (cartItems.length > 0) {
+      const selectedIds = cartItems.map((item) => item.id);
+      window.location.href = `/rider?ids=${selectedIds.join(',')}`;
+    }
   };
 
   return (
@@ -107,7 +115,9 @@ const Cart = ({ cartItems, removeFromCart, setCartItems, clearCart }) => {
                 <button className="btn btn-outline-danger me-2" onClick={handleClearCart}>
                   Clear Cart
                 </button>
-                <button className="btn btn-outline-dark">Checkout</button>
+                <button className="btn btn-outline-dark" onClick={handleDelivery}>
+                  Deliver
+                </button>
                 <hr />
                 <p>Total Quantity: {getTotalQuantity()}</p>
                 <p>Total Amount: ${getTotalAmount()}.00</p>

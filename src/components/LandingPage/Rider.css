@@ -1,0 +1,141 @@
+/* General styles */
+#rider-wrapper {
+    margin: 20px;
+  }
+  
+  .name {
+    font-weight: 600;
+    font-size: 1.4rem;
+    letter-spacing: 1.3px;
+    padding-left: 10px;
+    color: #555;
+  }
+  
+  .container {
+    padding: 10px;
+  }
+  
+  .rider-form {
+    margin-bottom: 20px;
+  }
+  
+  .rider-form .form-field {
+    padding-left: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .rider-form .form-field label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .rider-form .form-field input {
+    width: 100%;
+    display: block;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.2rem;
+    color: #666;
+    padding: 10px 15px 10px 10px;
+    border-radius: 20px;
+    box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
+  }
+  
+  .order-list {
+    margin-bottom: 20px;
+  }
+  
+  .order-list h2 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #555;
+  }
+  
+  .order-list ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .order-list li {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .order-list li.selected {
+    background-color: #f5f5f5;
+  }
+  
+  .order-list li:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .btn {
+    box-shadow: none;
+    width: 100%;
+    height: 40px;
+    background-color: #3d3d3d;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    letter-spacing: 1.3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-outline-dark {
+    background-color: transparent;
+    border: 2px solid #343a40;
+    color: #343a40;
+  }
+  
+  .btn-outline-dark:hover {
+    background-color: #343a40;
+  }
+  
+  /* Media query for smaller screens */
+  @media (max-width: 380px) {
+    #rider-wrapper {
+      margin: 30px 20px;
+      padding: 40px 15px 15px 15px;
+    }
+  }
+  
+  /* Rider specific styles */
+  .dummy-riders {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .rider-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 20px; /* Add some spacing between riders */
+  }
+  
+  .logo img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0px 0px 3px #5f5f5f, 0px 0px 0px 5px #ecf0f3, 8px 8px 15px #a7aaa7, -8px -8px 15px #fff;
+  }
+  
+  .rider-details {
+    margin-top: 10px; /* Add some spacing between the image and name */
+    text-align: center;
+  }
+  
