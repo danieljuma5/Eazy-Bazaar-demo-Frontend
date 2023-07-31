@@ -36,22 +36,7 @@ function App() {
     setSearchTerm(searchQuery);
   };
 
-  const deliverOrder = (orderId) => {
-    // Find the index of the order with the given orderId
-    const orderIndex = orders.findIndex((order) => order.id === orderId);
-
-    // If the order is found, update its status to "delivered"
-    if (orderIndex !== -1) {
-      const updatedOrders = [...orders];
-      updatedOrders[orderIndex] = { ...updatedOrders[orderIndex], status: 'delivered' };
-
-      // Remove the delivered order from the "orders" array
-      updatedOrders.splice(orderIndex, 1);
-
-      // Update the "orders" state
-      setOrders(updatedOrders);
-    }
-  };
+  // Rest of your existing code...
 
   return (
     <BrowserRouter>
@@ -83,7 +68,7 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
             <Route
               path="/rider"
-              element={<Rider orders={orders} deliverOrder={deliverOrder} />}
+              element={<Rider orders={orders} setOrders={setOrders} />} // Pass setOrders as a prop
             />
           </Routes>
         </div>

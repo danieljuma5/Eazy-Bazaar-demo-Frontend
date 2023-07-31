@@ -72,11 +72,8 @@ const Navbar = ({ onSearch }) => {
         </button>
         {/* Add the Rider link here */}
         <li>
-          <Link to="/rider">Rider</Link>
+          <Link to="/rider" className='rider-button'>Riders</Link>
         </li>
-        <Link to="/cart" className="cart-button">
-          Cart
-        </Link>
       </div>
     </nav>
   );

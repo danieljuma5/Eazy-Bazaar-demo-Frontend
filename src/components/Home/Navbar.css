@@ -111,6 +111,20 @@
   .actions-container .cart-button:hover {
     background-color: #555;
   }
+  .actions-container .rider-button {
+    padding: 5px 10px;
+    background-color: #2b2b2b;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .actions-container .rider-button:hover {
+    background-color: #555;
+  }
   
   /* Dropdown Menu Styles */
   .dropdown-menu {
