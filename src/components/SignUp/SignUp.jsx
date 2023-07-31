@@ -26,7 +26,7 @@ function SignUp() {
         <img src="" alt="" />
       </div>
       <div className="text-center mt-4 name">
-        This shop
+      Create an account.
       </div>
       <form className="p-3 mt-3" onChange={handleChange} onSubmit={handleSubmit}>
         <div className="form-field d-flex align-items-center">

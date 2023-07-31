@@ -27,7 +27,7 @@ const Navbar = ({ onSearch }) => {
     <nav className="navbar">
       <div className="logo-container">
         <Link to="/" className="logo">
-          Wetto Shop
+          EAZY BAZAAR
         </Link>
       </div>
       <div className="options-container">
@@ -57,9 +57,6 @@ const Navbar = ({ onSearch }) => {
         </form>
       </div>
       <div className="actions-container">
-        <button className="account-button" onClick={toggleDropdown}>
-          Account
-        </button>
         {showDropdown && (
           <ul className="dropdown-menu">
             <li>
@@ -70,6 +67,13 @@ const Navbar = ({ onSearch }) => {
             </li>
           </ul>
         )}
+        <button className="account-button" onClick={toggleDropdown}>
+          Account
+        </button>
+        {/* Add the Rider link here */}
+        <li>
+          <Link to="/rider">Rider</Link>
+        </li>
         <Link to="/cart" className="cart-button">
           Cart
         </Link>
