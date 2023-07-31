@@ -3,9 +3,9 @@ import './Riders.css';
 
 const DummyRiders = ({ riders, onRiderSelect }) => {
   return (
-    <div>
+    <div className="dummy-riders-container">
       <h2>Select a Rider</h2>
-      <ul className="dummy-riders">
+      <ul className="dummy-riders-list">
         {riders.map((rider) => (
           <li key={rider.id} onClick={() => onRiderSelect(rider)}>
             <div className="rider-info">

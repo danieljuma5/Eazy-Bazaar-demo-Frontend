@@ -40,7 +40,7 @@ const Rider = ({ orders, setOrders }) => {
         // and remove the orders from the "orders" array.
         // Make sure to update the "orders" state accordingly.
 
-        const updatedOrders = orders.filter((order) => !selectedOrderIds.includes(order.id));
+        const updatedOrders = orders.filter((order) => selectedOrderIds.includes(order.id));
         setOrders(updatedOrders);
 
         // After delivering the orders, you may want to redirect back to the Cart page
@@ -57,9 +57,19 @@ const Rider = ({ orders, setOrders }) => {
   };
 
   const getTotalAmount = () => {
-    const selectedOrders = orders.filter((order) => selectedOrderIds.includes(order.id));
-    const totalAmount = selectedOrders.reduce((acc, order) => acc + order.totalAmount, 0);
+    const totalAmount = selectedOrderIds.reduce((acc, orderId) => {
+      const order = orders.find((order) => order.id === orderId);
+      return order ? acc + order.totalAmount : acc;
+    }, 0);
     return totalAmount;
+  };
+
+  const getSelectedProducts = () => {
+    const selectedProducts = selectedOrderIds.map((orderId) => {
+      const order = orders.find((order) => order.id === orderId);
+      return order ? order.orderName : '';
+    });
+    return selectedProducts;
   };
 
   // Replace this with your actual rider data or fetch it from an API
@@ -106,6 +116,7 @@ const Rider = ({ orders, setOrders }) => {
             {selectedOrderIds.length > 0 && (
               <div className="text-center mt-4">
                 <p>Total Amount of Selected Orders: ${getTotalAmount()}</p>
+                <p>Products Being Delivered: {getSelectedProducts().join(', ')}</p>
               </div>
             )}
           </div>

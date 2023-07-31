@@ -27,7 +27,7 @@ const Navbar = ({ onSearch }) => {
     <nav className="navbar">
       <div className="logo-container">
         <Link to="/" className="logo">
-          Wetto Shop
+          EAZY BAZAAR
         </Link>
       </div>
       <div className="options-container">
