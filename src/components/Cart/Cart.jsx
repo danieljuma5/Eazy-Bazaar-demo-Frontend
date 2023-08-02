@@ -8,12 +8,10 @@ const Cart = ({ cartItems, removeFromCart, setCartItems, clearCart }) => {
     setCartItems(updatedCartItems);
     removeFromCart(productId);
   };
-
   const handleClearCart = () => {
     setCartItems([]);
     clearCart();
   };
-
   const handleQuantityChange = (productId, quantity) => {
     const updatedCartItems = cartItems.map((item) => {
       if (item.id === productId) {
@@ -24,15 +22,12 @@ const Cart = ({ cartItems, removeFromCart, setCartItems, clearCart }) => {
       }
       return item;
     });
-
     setCartItems(updatedCartItems);
   };
-
   const getTotalQuantity = () => {
     const totalQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
     return totalQuantity;
   };
-
   const getTotalAmount = () => {
     const totalAmount = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
     return totalAmount;
@@ -115,6 +110,7 @@ const Cart = ({ cartItems, removeFromCart, setCartItems, clearCart }) => {
                 <button className="btn btn-outline-danger me-2" onClick={handleClearCart}>
                   Clear Cart
                 </button>
+                <button className="btn btn-outline-dark">Checkout</button>
                 <button className="btn btn-outline-dark" onClick={handleDelivery}>
                   Deliver
                 </button>
@@ -129,5 +125,4 @@ const Cart = ({ cartItems, removeFromCart, setCartItems, clearCart }) => {
     </div>
   );
 };
-
 export default Cart;

@@ -8,11 +8,6 @@ const Rider = ({ orders, setOrders }) => {
 
   const [selectedOrderIds, setSelectedOrderIds] = useState([]);
   const [selectedRider, setSelectedRider] = useState(null);
-  const [riders, setRiders] = useState([
-    { id: 1, name: 'Dummy Rider 1', contact: '1234567890', logoUrl: 'https://i.pinimg.com/236x/4f/77/00/4f7700a14a30bc31380abdd699c3698a.jpg' },
-    { id: 2, name: 'Dummy Rider 2', contact: '9876543210', logoUrl: 'https://i.pinimg.com/236x/4f/77/00/4f7700a14a30bc31380abdd699c3698a.jpg' },
-    { id: 3, name: 'Dummy Rider 3', contact: '5555555555', logoUrl: 'https://i.pinimg.com/236x/4f/77/00/4f7700a14a30bc31380abdd699c3698a.jpg' },
-  ]);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -32,27 +27,26 @@ const Rider = ({ orders, setOrders }) => {
 
   const handleRiderSelect = (rider) => {
     setSelectedRider(rider);
-    // Remove the selected rider from the list of available riders
-    setRiders(riders.filter((r) => r.id !== rider.id));
   };
 
   const handleDelivery = () => {
     if (selectedOrderIds.length > 0 && selectedRider) {
       // Show a confirmation dialog before delivering the orders
       const isConfirmed = window.confirm('Are you sure you want to deliver the selected orders?');
-  
+
       if (isConfirmed) {
         // Implement the logic to handle order delivery based on the selectedOrderIds
         // For example, you can update the order status to "delivered"
         // and remove the orders from the "orders" array.
         // Make sure to update the "orders" state accordingly.
-  
-        const updatedOrders = orders.filter((order) => !selectedOrderIds.includes(order.id));
+
+        const updatedOrders = orders.filter((order) => selectedOrderIds.includes(order.id));
         setOrders(updatedOrders);
-  
-        // After delivering the orders, remove the selected rider from the list of available riders
-        setRiders(riders.filter((rider) => rider.id !== selectedRider.id));
-  
+
+        // After delivering the orders, you may want to redirect back to the Cart page
+        // or show a success message.
+        // For example, redirecting back to the Cart page:
+
         // Reset selectedOrderIds and selectedRider after successful delivery
         setSelectedOrderIds([]);
         setSelectedRider(null);
@@ -61,7 +55,6 @@ const Rider = ({ orders, setOrders }) => {
       alert('Please select orders and a rider before delivering.');
     }
   };
-  
 
   const getTotalAmount = () => {
     const totalAmount = selectedOrderIds.reduce((acc, orderId) => {
@@ -78,6 +71,13 @@ const Rider = ({ orders, setOrders }) => {
     });
     return selectedProducts;
   };
+
+  // Replace this with your actual rider data or fetch it from an API
+  const riders = [
+    { id: 1, name: 'Dummy Rider 1', contact: '1234567890', logoUrl: 'https://cdn.vectorstock.com/i/preview-1x/39/22/express-delivery-ride-motorcycle-icon-banner-vector-46973922.webp' },
+    { id: 2, name: 'Dummy Rider 2', contact: '9876543210', logoUrl: 'https://cdn.vectorstock.com/i/preview-1x/39/22/express-delivery-ride-motorcycle-icon-banner-vector-46973922.webp' },
+    { id: 3, name: 'Dummy Rider 3', contact: '5555555555', logoUrl: 'https://cdn.vectorstock.com/i/preview-1x/39/22/express-delivery-ride-motorcycle-icon-banner-vector-46973922.webp' },
+  ];
 
   return (
     <div id="rider-wrapper">
