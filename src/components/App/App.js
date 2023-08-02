@@ -14,8 +14,6 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [orders, setOrders] = useState([
-    { id: 1, orderName: 'Order 1', totalAmount: 50.0 },
-    { id: 2, orderName: 'Order 2', totalAmount: 75.0 },
     // Add more orders as needed
   ]);
 
