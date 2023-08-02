@@ -8,7 +8,6 @@ import Home from '../LandingPage/Home.jsx';
 import Products from '../LandingPage/Products.jsx';
 import Product from '../LandingPage/Product.jsx';
 import Footer from '../Home/Footer.jsx';
-
 import Rider from '../LandingPage/Rider.jsx';
 
 function App() {
@@ -23,33 +22,21 @@ function App() {
   const addToCart = (product) => {
     setCartItems([...cartItems, product]);
   };
+
   const removeFromCart = (productId) => {
     const updatedCartItems = cartItems.filter((item) => item.id !== productId);
     setCartItems(updatedCartItems);
   };
+
   const clearCart = () => {
     setCartItems([]);
   };
+
   const handleSearch = (searchQuery) => {
     setSearchTerm(searchQuery);
   };
 
-  const deliverOrder = (orderId) => {
-    // Find the index of the order with the given orderId
-    const orderIndex = orders.findIndex((order) => order.id === orderId);
-
-    // If the order is found, update its status to "delivered"
-    if (orderIndex !== -1) {
-      const updatedOrders = [...orders];
-      updatedOrders[orderIndex] = { ...updatedOrders[orderIndex], status: 'delivered' };
-
-      // Remove the delivered order from the "orders" array
-      updatedOrders.splice(orderIndex, 1);
-
-      // Update the "orders" state
-      setOrders(updatedOrders);
-    }
-  };
+  // Rest of your existing code...
 
   return (
     <BrowserRouter>
@@ -81,7 +68,7 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
             <Route
               path="/rider"
-              element={<Rider orders={orders} deliverOrder={deliverOrder} />}
+              element={<Rider orders={orders} setOrders={setOrders} />} // Pass setOrders as a prop
             />
           </Routes>
         </div>
