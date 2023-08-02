@@ -7,10 +7,12 @@ const Cart = ({ cartItems, removeFromCart, setCartItems, clearCart }) => {
     setCartItems(updatedCartItems);
     removeFromCart(productId);
   };
+
   const handleClearCart = () => {
     setCartItems([]);
     clearCart();
   };
+
   const handleQuantityChange = (productId, quantity) => {
     const updatedCartItems = cartItems.map((item) => {
       if (item.id === productId) {
@@ -23,10 +25,12 @@ const Cart = ({ cartItems, removeFromCart, setCartItems, clearCart }) => {
     });
     setCartItems(updatedCartItems);
   };
+
   const getTotalQuantity = () => {
     const totalQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
     return totalQuantity;
   };
+
   const getTotalAmount = () => {
     const totalAmount = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
     return totalAmount;
@@ -111,15 +115,10 @@ const Cart = ({ cartItems, removeFromCart, setCartItems, clearCart }) => {
                 <button id="clear-cart" className="clear-cart-btn" onClick={handleClearCart}>
                   Clear Cart
                 </button>
-<<<<<<< HEAD
-                <button className="btn btn-outline-dark">Checkout</button>
-                <button className="btn btn-outline-dark" onClick={handleDelivery}>
-=======
                 <button id="checkout" className="checkout-btn">
                   Checkout
                 </button>
                 <button id="deliver" className="deliver-btn" onClick={handleDelivery}>
->>>>>>> RyanBiy
                   Deliver
                 </button>
                 <hr />
@@ -133,4 +132,5 @@ const Cart = ({ cartItems, removeFromCart, setCartItems, clearCart }) => {
     </div>
   );
 };
+
 export default Cart;

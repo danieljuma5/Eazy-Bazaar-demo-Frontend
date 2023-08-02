@@ -9,6 +9,7 @@ import Products from '../LandingPage/Products.jsx';
 import Product from '../LandingPage/Product.jsx';
 import Footer from '../Home/Footer.jsx';
 import Rider from '../LandingPage/Rider.jsx';
+import User from '../LandingPage/User.jsx';
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -72,6 +73,9 @@ function App() {
               path="/products/:id"
               element={<Product addToCart={addToCart} />}
             />
+            <Route exact path="/" element={<Home />} />
+            {/* Pass the 'user' object as a prop to the 'User' component */}
+            <Route path="/user" element={<User />} />
             <Route path="/login" element={<LogIn />} />
             <Route path="/signup" element={<SignUp />} />
             <Route
