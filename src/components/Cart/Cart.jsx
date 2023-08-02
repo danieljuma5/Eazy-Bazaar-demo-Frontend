@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import './Cart.css';
-
 const Cart = ({ cartItems, removeFromCart, setCartItems, clearCart }) => {
   const handleRemoveFromCart = (productId) => {
     const updatedCartItems = cartItems.filter((item) => item.id !== productId);
@@ -23,6 +23,7 @@ const Cart = ({ cartItems, removeFromCart, setCartItems, clearCart }) => {
       }
       return item;
     });
+
     setCartItems(updatedCartItems);
   };
 
@@ -35,31 +36,27 @@ const Cart = ({ cartItems, removeFromCart, setCartItems, clearCart }) => {
     const totalAmount = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
     return totalAmount;
   };
-
   const handleDelivery = () => {
     if (cartItems.length > 0) {
       const selectedIds = cartItems.map((item) => item.id);
       window.location.href = `/rider?ids=${selectedIds.join(',')}`;
     }
   };
-
   return (
     <div id="cart-wrapper">
       <div className="container py-5">
         <div className="row py-5">
           <div className="col-12">
-            <h1 id="cart-heading" className="name">
-              Shopping Cart
-            </h1>
+            <h1 className="display-6 fw-bolder text-center mb-4 name">Shopping Cart</h1>
             <div id="cart-table-container">
-              <table id="cart-table">
+              <table id="cart-table" className="table table-hover">
                 <thead>
                   <tr>
                     <th scope="col">Product</th>
                     <th scope="col">Image</th>
                     <th scope="col">Price</th>
                     <th scope="col">Quantity</th>
-                    <th scope="col">Total Price</th>
+                    <th scope="col">Total Quantity</th>
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>
@@ -76,12 +73,12 @@ const Cart = ({ cartItems, removeFromCart, setCartItems, clearCart }) => {
                       <tr key={item.id}>
                         <td>{item.title}</td>
                         <td>
-                          <img src={item.image} alt={item.title} />
+                          <img src={item.image} alt={item.title} style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '50%' }} />
                         </td>
                         <td>${item.price}</td>
                         <td>
                           <button
-                            className="quantity-btn"
+                            className="btn btn-outline-dark btn-sm me-2"
                             onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
                             disabled={item.quantity === 1}
                           >
@@ -89,7 +86,7 @@ const Cart = ({ cartItems, removeFromCart, setCartItems, clearCart }) => {
                           </button>
                           {item.quantity}
                           <button
-                            className="quantity-btn"
+                            className="btn btn-outline-dark btn-sm ms-2"
                             onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
                           >
                             +
@@ -98,7 +95,7 @@ const Cart = ({ cartItems, removeFromCart, setCartItems, clearCart }) => {
                         <td>${item.price * item.quantity}</td>
                         <td>
                           <button
-                            className="remove-btn"
+                            className="btn btn-outline-danger btn-sm"
                             onClick={() => handleRemoveFromCart(item.id)}
                           >
                             Remove
@@ -112,18 +109,16 @@ const Cart = ({ cartItems, removeFromCart, setCartItems, clearCart }) => {
             </div>
             {cartItems && cartItems.length > 0 && (
               <div className="text-center">
-                <button id="clear-cart" className="clear-cart-btn" onClick={handleClearCart}>
+                <button className="btn btn-outline-danger me-2" onClick={handleClearCart}>
                   Clear Cart
                 </button>
-                <button id="checkout" className="checkout-btn">
-                  Checkout
-                </button>
-                <button id="deliver" className="deliver-btn" onClick={handleDelivery}>
+                <button className="btn btn-outline-dark">Checkout</button>
+                <button className="btn btn-outline-dark" onClick={handleDelivery}>
                   Deliver
                 </button>
                 <hr />
-                <p id="total-quantity">Total Quantity: {getTotalQuantity()}</p>
-                <p id="total-amount">Total Amount: ${getTotalAmount()}.00</p>
+                <p>Total Quantity: {getTotalQuantity()}</p>
+                <p>Total Amount: ${getTotalAmount()}.00</p>
               </div>
             )}
           </div>
