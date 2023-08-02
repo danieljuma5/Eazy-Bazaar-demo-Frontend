@@ -1,34 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Products.css';
-
 const Products = ({ addToCart }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(false);
-
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
-      const response = await fetch('https://fakestoreapi.com/products');
+      const response = await fetch('https://eazy-bazaar-ecommerce-app.onrender.com/products');
       const data = await response.json();
       setProducts(data);
       setFilteredProducts(data);
       setLoading(false);
     };
-  
     fetchProducts();
   }, []);
-  
   const Loading = () => {
     return <div>Loading...</div>;
   };
-
   const filterProducts = (category) => {
     const updatedList = products.filter((product) => product.category.trim().toLowerCase() === category.trim().toLowerCase());
     setFilteredProducts(updatedList);
   };
-  
   const ShowProducts = () => {
     return (
       <div className="products-container">
@@ -56,19 +50,19 @@ const Products = ({ addToCart }) => {
   {filteredProducts.map((product) => (
     <div className="col mb-4" key={product.id}>
       <div className="product-card h-100 text-center p-4">
-        <img src={product.image} className="product-image" alt={product.title} />
+        <img src={product.image} className="product-image" alt={product.name} />
         <div className="product-details">
-          <h5 className="product-title">{product.title.substring(0, 18)}</h5>
+          <h5 className="product-title">{product.name.substring(0, 18)}</h5>
           <p className="product-price lead fw-bold">${product.price}</p>
           <p className="product-rating lead fw-bolder">
-            Rating: {product.rating.rate}
+            Units Left: {product.stock_count}
             <i className="fa fa-star"></i>
           </p>
           <div className="product-buttons">
             <button className="btn btn-outline-dark" onClick={() => addToCart(product)}>
               Add to Cart
             </button>
-            <NavLink to={`/products/${product.id}`} className="btn btn-outline-dark ms-2">
+            <NavLink to={/products/${product.id}} className="btn btn-outline-dark ms-2">
               Buy Now
             </NavLink>
           </div>
@@ -77,11 +71,9 @@ const Products = ({ addToCart }) => {
     </div>
   ))}
 </div>
-
       </div>
     );
   };
-
   return (
     <div>
       <div className="container-lg my-4 py-4">
@@ -98,5 +90,4 @@ const Products = ({ addToCart }) => {
     </div>
   );
 };
-
 export default Products;
