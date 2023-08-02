@@ -55,7 +55,7 @@ const Products = ({ addToCart }) => {
           <h5 className="product-title">{product.name.substring(0, 18)}</h5>
           <p className="product-price lead fw-bold">${product.price}</p>
           <p className="product-rating lead fw-bolder">
-            Units Left: {product.stock_count}
+      Units Left: {product.stock_count}
             <i className="fa fa-star"></i>
           </p>
           <div className="product-buttons">

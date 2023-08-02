@@ -1,14 +1,17 @@
+
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import './Rider.css';
 import DummyRiders from './Riders'; // Assuming both files are in the same directory
-
 const Rider = ({ orders, setOrders }) => {
   const location = useLocation();
-
   const [selectedOrderIds, setSelectedOrderIds] = useState([]);
   const [selectedRider, setSelectedRider] = useState(null);
-
+  const [riders, setRiders] = useState([
+    { id: 1, name: 'Dummy Rider 1', contact: '1234567890', logoUrl: 'https://i.pinimg.com/236x/4f/77/00/4f7700a14a30bc31380abdd699c3698a.jpg' },
+    { id: 2, name: 'Dummy Rider 2', contact: '9876543210', logoUrl: 'https://i.pinimg.com/236x/4f/77/00/4f7700a14a30bc31380abdd699c3698a.jpg' },
+    { id: 3, name: 'Dummy Rider 3', contact: '5555555555', logoUrl: 'https://i.pinimg.com/236x/4f/77/00/4f7700a14a30bc31380abdd699c3698a.jpg' },
+  ]);
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const idsParam = searchParams.get('ids');
@@ -16,37 +19,31 @@ const Rider = ({ orders, setOrders }) => {
       setSelectedOrderIds(idsParam.split(','));
     }
   }, [location.search]);
-
-  const handleOrderSelect = (orderId) => { 
+  const handleOrderSelect = (orderId) => {
     if (selectedOrderIds.includes(orderId)) {
       setSelectedOrderIds(selectedOrderIds.filter((id) => id !== orderId));
     } else {
       setSelectedOrderIds([...selectedOrderIds, orderId]);
     }
   };
-
   const handleRiderSelect = (rider) => {
     setSelectedRider(rider);
+    // Remove the selected rider from the list of available riders
+    setRiders(riders.filter((r) => r.id !== rider.id));
   };
-
   const handleDelivery = () => {
     if (selectedOrderIds.length > 0 && selectedRider) {
       // Show a confirmation dialog before delivering the orders
       const isConfirmed = window.confirm('Are you sure you want to deliver the selected orders?');
-
       if (isConfirmed) {
         // Implement the logic to handle order delivery based on the selectedOrderIds
         // For example, you can update the order status to "delivered"
         // and remove the orders from the "orders" array.
         // Make sure to update the "orders" state accordingly.
-
-        const updatedOrders = orders.filter((order) => selectedOrderIds.includes(order.id));
+        const updatedOrders = orders.filter((order) => !selectedOrderIds.includes(order.id));
         setOrders(updatedOrders);
-
-        // After delivering the orders, you may want to redirect back to the Cart page
-        // or show a success message.
-        // For example, redirecting back to the Cart page:
-
+        // After delivering the orders, remove the selected rider from the list of available riders
+        setRiders(riders.filter((rider) => rider.id !== selectedRider.id));
         // Reset selectedOrderIds and selectedRider after successful delivery
         setSelectedOrderIds([]);
         setSelectedRider(null);
@@ -55,7 +52,6 @@ const Rider = ({ orders, setOrders }) => {
       alert('Please select orders and a rider before delivering.');
     }
   };
-
   const getTotalAmount = () => {
     const totalAmount = selectedOrderIds.reduce((acc, orderId) => {
       const order = orders.find((order) => order.id === orderId);
@@ -63,7 +59,6 @@ const Rider = ({ orders, setOrders }) => {
     }, 0);
     return totalAmount;
   };
-
   const getSelectedProducts = () => {
     const selectedProducts = selectedOrderIds.map((orderId) => {
       const order = orders.find((order) => order.id === orderId);
@@ -71,14 +66,6 @@ const Rider = ({ orders, setOrders }) => {
     });
     return selectedProducts;
   };
-
-  // Replace this with your actual rider data or fetch it from an API
-  const riders = [
-    { id: 1, name: 'Dummy Rider 1', contact: '1234567890', logoUrl: 'https://cdn.vectorstock.com/i/preview-1x/39/22/express-delivery-ride-motorcycle-icon-banner-vector-46973922.webp' },
-    { id: 2, name: 'Dummy Rider 2', contact: '9876543210', logoUrl: 'https://cdn.vectorstock.com/i/preview-1x/39/22/express-delivery-ride-motorcycle-icon-banner-vector-46973922.webp' },
-    { id: 3, name: 'Dummy Rider 3', contact: '5555555555', logoUrl: 'https://cdn.vectorstock.com/i/preview-1x/39/22/express-delivery-ride-motorcycle-icon-banner-vector-46973922.webp' },
-  ];
-
   return (
     <div id="rider-wrapper">
       <div className="container py-5">
@@ -93,7 +80,6 @@ const Rider = ({ orders, setOrders }) => {
             ) : (
               <DummyRiders riders={riders} onRiderSelect={handleRiderSelect} />
             )}
-
             <div className="order-list">
               <h2>Orders to Deliver</h2>
               <ul>
@@ -125,5 +111,4 @@ const Rider = ({ orders, setOrders }) => {
     </div>
   );
 };
-
 export default Rider;
