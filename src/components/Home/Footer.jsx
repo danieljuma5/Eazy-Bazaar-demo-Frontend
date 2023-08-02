@@ -29,7 +29,7 @@ const Footer = () => {
       </div>
       <div className="about-container">
         <p className="about-info">
-          Welcome to EAZYBAZAAR, your ultimate destination for all your online shopping needs. At WETTO SHOP, we strive to provide you with a seamless and enjoyable shopping experience right from the comfort of your home. With a wide range of products available, we offer something for everyone, from fashion and accessories to electronics and home decor. Thank you for choosing WETTO SHOP as your go-to online shopping destination. We are committed to providing you with exceptional service and an enjoyable shopping experience. Happy shopping!
+          Welcome to EAZY BAZAAR, your ultimate destination for all your online shopping needs. At EAZY BAZAAR, we strive to provide you with a seamless and enjoyable shopping experience right from the comfort of your home. With a wide range of products available, we offer something for everyone, from fashion and accessories to electronics and home decor. Thank you for choosing WETTO SHOP as your go-to online shopping destination. We are committed to providing you with exceptional service and an enjoyable shopping experience. Happy shopping!
         </p>
       </div>
       <div className="social-media-container">
