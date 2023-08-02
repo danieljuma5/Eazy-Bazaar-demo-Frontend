@@ -1,0 +1,33 @@
+/* CustomAlert.css */
+.custom-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border: 1px solid #333333;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .alert-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .alert-content p {
+    margin: 0;
+    padding-right: 10px;
+  }
+  
+  .alert-content button {
+    padding: 6px 12px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
