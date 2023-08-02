@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Products.css';
-
 const Products = ({ addToCart }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(false);
-
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
@@ -16,19 +14,15 @@ const Products = ({ addToCart }) => {
       setFilteredProducts(data);
       setLoading(false);
     };
-  
     fetchProducts();
   }, []);
-  
   const Loading = () => {
     return <div>Loading...</div>;
   };
-
   const filterProducts = (category) => {
     const updatedList = products.filter((product) => product.category.trim().toLowerCase() === category.trim().toLowerCase());
     setFilteredProducts(updatedList);
   };
-  
   const ShowProducts = () => {
     return (
       <div className="products-container">
@@ -77,11 +71,9 @@ const Products = ({ addToCart }) => {
     </div>
   ))}
 </div>
-
       </div>
     );
   };
-
   return (
     <div>
       <div className="container-lg my-4 py-4">
@@ -98,5 +90,4 @@ const Products = ({ addToCart }) => {
     </div>
   );
 };
-
 export default Products;
