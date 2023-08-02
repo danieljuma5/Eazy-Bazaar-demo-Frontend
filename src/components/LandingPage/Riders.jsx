@@ -1,7 +1,7 @@
 import React from 'react';
 import './Riders.css';
 
-const DummyRiders = ({ riders, onRiderSelect }) => {
+const DummyRiders = ({ riders, selectedOrders, onRiderSelect }) => {
   return (
     <div className="dummy-riders-container">
       <h2>Select a Rider</h2>
@@ -17,6 +17,19 @@ const DummyRiders = ({ riders, onRiderSelect }) => {
                 <p>Contact: {rider.contact}</p>
               </div>
             </div>
+            {selectedOrders && selectedOrders.length > 0 && (
+              <div>
+                <h3>Products to Deliver</h3>
+                <ul>
+                  {selectedOrders.map((order) => (
+                    <li key={order.id}>
+                      <p>{order.orderName}</p>
+                      <p>Total Amount: ${order.totalAmount}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </li>
         ))}
       </ul>

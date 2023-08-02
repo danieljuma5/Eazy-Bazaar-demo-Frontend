@@ -79,9 +79,15 @@ function App() {
             <Route path="/login" element={<LogIn />} />
             <Route path="/signup" element={<SignUp />} />
             <Route
-              path="/rider"
-              element={<Rider orders={orders} setOrders={setOrders} cartItems={cartItems} />}
-            />
+  path="/rider"
+  element={
+    <Rider
+      orders={orders} // Make sure this prop is passed
+      setOrders={setOrders} // Make sure this prop is passed
+      cartItems={cartItems}
+    />
+  }
+/>
           </Routes>
         </div>
         <Footer />

@@ -1,16 +1,15 @@
+
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import './Rider.css';
 import CustomAlert from './CustomAlert';
 import Modal from './Modal';
 import DummyRiders from './Riders';
+
 const Rider = ({ orders, setOrders }) => {
   const location = useLocation();
   const [selectedOrderIds, setSelectedOrderIds] = useState([]);
   const [selectedRider, setSelectedRider] = useState(null);
   const [riders, setRiders] = useState([
-    // Dummy rider data
-    // ...
     { id: 1, name: 'Dummy Rider 1', contact: '1234567890', logoUrl: 'https://i.pinimg.com/236x/4f/77/00/4f7700a14a30bc31380abdd699c3698a.jpg' },
     { id: 2, name: 'Dummy Rider 2', contact: '9876543210', logoUrl: 'https://i.pinimg.com/236x/4f/77/00/4f7700a14a30bc31380abdd699c3698a.jpg' },
     { id: 3, name: 'Dummy Rider 3', contact: '5555555555', logoUrl: 'https://i.pinimg.com/236x/4f/77/00/4f7700a14a30bc31380abdd699c3698a.jpg' },
@@ -37,18 +36,15 @@ const Rider = ({ orders, setOrders }) => {
 
   const handleRiderSelect = (rider) => {
     setSelectedRider(rider);
-    // Remove the selected rider from the list of available riders
     setRiders(riders.filter((r) => r.id !== rider.id));
   };
 
   const handleDelivery = () => {
     if (selectedOrderIds.length > 0 && selectedRider) {
-      // Show a confirmation modal before delivering the orders
       const message = 'Are you sure you want to deliver the selected orders?';
       setModalMessage(message);
       setShowModal(true);
     } else {
-      // Show a custom alert with an error message
       const message = 'Please select orders and a rider before delivering.';
       setModalMessage(message);
       setShowModal(true);
@@ -60,11 +56,9 @@ const Rider = ({ orders, setOrders }) => {
     // For example, you can update the order status to "delivered"
     // and remove the orders from the "orders" array.
     // Make sure to update the "orders" state accordingly.
-    const updatedOrders = orders.filter((order) => !selectedOrderIds.includes(order.id));
+    const updatedOrders = orders.filter((order) => selectedOrderIds.includes(order.id));
     setOrders(updatedOrders);
-    // After delivering the orders, remove the selected rider from the list of available riders
     setRiders(riders.filter((rider) => rider.id !== selectedRider.id));
-    // Reset selectedOrderIds and selectedRider after successful delivery
     setSelectedOrderIds([]);
     setSelectedRider(null);
   };
@@ -97,7 +91,10 @@ const Rider = ({ orders, setOrders }) => {
                 <p>{selectedRider.name} - {selectedRider.contact}</p>
               </div>
             ) : (
-              <DummyRiders riders={riders} onRiderSelect={handleRiderSelect} />
+           // In the Rider component, render the DummyRiders component as follows:
+
+<DummyRiders riders={riders} selectedOrders={orders.filter((order) => selectedOrderIds.includes(order.id))} onRiderSelect={handleRiderSelect} />
+
             )}
             <div className="order-list">
               <h2>Orders to Deliver</h2>
@@ -127,7 +124,6 @@ const Rider = ({ orders, setOrders }) => {
           </div>
         </div>
       </div>
-      {/* Render the custom modal */}
       {showModal && <CustomAlert message={modalMessage} onClose={() => setShowModal(false)} />}
       <Modal isOpen={showModal} message={modalMessage} onYes={handleYesDelivery} onClose={() => setShowModal(false)} />
     </div>
