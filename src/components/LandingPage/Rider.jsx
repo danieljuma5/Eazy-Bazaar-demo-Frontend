@@ -17,7 +17,7 @@ const Rider = ({ orders, setOrders }) => {
     }
   }, [location.search]);
 
-  const handleOrderSelect = (orderId) => {
+  const handleOrderSelect = (orderId) => { 
     if (selectedOrderIds.includes(orderId)) {
       setSelectedOrderIds(selectedOrderIds.filter((id) => id !== orderId));
     } else {
