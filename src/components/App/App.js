@@ -14,6 +14,7 @@ import User from '../LandingPage/User.jsx';
 function App() {
   const [cartItems, setCartItems] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [user, setUser] = useState(null)
   const [orders, setOrders] = useState([
     // Add more orders as needed
   ]);
@@ -50,7 +51,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="app-container">
-        <Navbar onSearch={handleSearch} />
+        <Navbar onSearch={handleSearch} user={user} setUser={setUser}/>
         <div className="content-container">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -75,9 +76,9 @@ function App() {
             />
             <Route exact path="/" element={<Home />} />
             {/* Pass the 'user' object as a prop to the 'User' component */}
-            <Route path="/user" element={<User />} />
-            <Route path="/login" element={<LogIn />} />
-            <Route path="/signup" element={<SignUp />} />
+            <Route path="/profile" element={<User setUser={setUser}/>} />
+            <Route path="/login" element={<LogIn onAddUser = {setUser}/>} />
+            <Route path="/signup" element={<SignUp onAddUser = {setUser}/>} />
             <Route
   path="/rider"
   element={

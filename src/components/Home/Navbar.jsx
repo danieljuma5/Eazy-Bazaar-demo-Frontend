@@ -106,9 +106,6 @@ const Navbar = ({ onSearch, user,setUser }) => {
             {showDropdown && (
               <ul className="dropdown-menu">
                 <li>
-                <Link to="/user">My Profile</Link>
-                </li>
-                <li>
                   <Link to="/signup">Sign Up</Link>
                 </li>
                 <li>

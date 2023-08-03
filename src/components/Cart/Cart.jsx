@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Cart.css';
 const Cart = ({ cartItems, removeFromCart, setCartItems, clearCart }) => {
+  console.log(cartItems)
   const handleRemoveFromCart = (productId) => {
     const updatedCartItems = cartItems.filter((item) => item.id !== productId);
     setCartItems(updatedCartItems);
