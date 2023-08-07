@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './Navbar.css';
 const Navbar = ({ onSearch, user,setUser }) => {
-  console.log(user)
   const [searchTerm, setSearchTerm] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
@@ -22,6 +21,7 @@ const Navbar = ({ onSearch, user,setUser }) => {
         setUser({ username: decodedToken.username });
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const handleSearch = (e) => {
     e.preventDefault();

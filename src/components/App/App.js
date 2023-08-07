@@ -10,39 +10,42 @@ import Product from '../LandingPage/Product.jsx';
 import Footer from '../Home/Footer.jsx';
 import Rider from '../LandingPage/Rider.jsx';
 import User from '../LandingPage/User.jsx';
+import { useSelector, useDispatch } from 'react-redux';
+import { addToCart } from '../../features/cart/cartSlice.js';
+
+
+
+
 
 function App() {
-  const [cartItems, setCartItems] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [user, setUser] = useState(null)
-  const [orders, setOrders] = useState([
-    // Add more orders as needed
-  ]);
+  const cartItems = useSelector((state) => state.cart.items);
+  const dispatch = useDispatch();
+  const [orders, setOrders] = useState(cartItems);
+  
 
-  const addToCart = (product) => {
-    const existingItem = cartItems.find((item) => item.id === product.id);
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product))
+  }
 
-    if (existingItem) {
-      // If the product already exists in the cart, increment the quantity
-      setCartItems(
-        cartItems.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-        )
-      );
-    } else {
-      // If the product doesn't exist in the cart, add it with quantity = 1
-      setCartItems([...cartItems, { ...product, quantity: 1 }]);
-    }
-  };
 
-  const removeFromCart = (productId) => {
-    const updatedCartItems = cartItems.filter((item) => item.id !== productId);
-    setCartItems(updatedCartItems);
-  };
 
-  const clearCart = () => {
-    setCartItems([]);
-  };
+  // const handleAddToCart = (product) => {
+  //   const existingItem = cartItems.find((item) => item.id === product.id);
+
+  //   if (existingItem) {
+  //     // If the product already exists in the cart, increment the quantity
+  //     setCartItems(
+  //       cartItems.map((item) =>
+  //         item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+  //       )
+  //     );
+  //   } else {
+  //     // If the product doesn't exist in the cart, add it with quantity = 1
+  //     setCartItems([...cartItems, { ...product, quantity: 1 }]);
+  //   }
+  // };
 
   const handleSearch = (searchQuery) => {
     setSearchTerm(searchQuery);
@@ -54,31 +57,26 @@ function App() {
         <Navbar onSearch={handleSearch} user={user} setUser={setUser}/>
         <div className="content-container">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home addToCart={handleAddToCart}/>} />
             <Route
               path="/cart"
               element={
-                <Cart
-                  cartItems={cartItems}
-                  removeFromCart={removeFromCart}
-                  setCartItems={setCartItems}
-                  clearCart={clearCart}
-                />
+                <Cart/>
               }
             />
             <Route
               path="/products/*"
-              element={<Products addToCart={addToCart} searchTerm={searchTerm} />}
+              element={<Products addToCart={handleAddToCart} searchTerm={searchTerm} />}
             />
             <Route
               path="/products/:id"
-              element={<Product addToCart={addToCart} />}
+              element={<Product addToCart={handleAddToCart} />}
             />
-            <Route exact path="/" element={<Home />} />
             {/* Pass the 'user' object as a prop to the 'User' component */}
             <Route path="/profile" element={<User setUser={setUser}/>} />
             <Route path="/login" element={<LogIn onAddUser = {setUser}/>} />
             <Route path="/signup" element={<SignUp onAddUser = {setUser}/>} />
+          
             <Route
   path="/rider"
   element={
@@ -92,6 +90,7 @@ function App() {
           </Routes>
         </div>
         <Footer />
+
       </div>
     </BrowserRouter>
   );
